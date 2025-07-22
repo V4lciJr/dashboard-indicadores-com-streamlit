@@ -27,7 +27,7 @@ def autenticar_usuario(authenticator):
         st.error("Preencha suas informnações, para efetuar o login.")
 
 
-def logout(authenticator):
+def logout():
     authenticator.logout()
 
 
@@ -42,7 +42,12 @@ if dados_usuario:
 
 
     base = carregar_dados()
-    st.title("Dashboard e Indicadores")
-    st.write("Bem vindo, Valci!!")
 
-    st.table(base.head(10))
+    paginas = st.navigation({
+        "Home": [st.Page("homepage.py", title="Início")],
+        "Dashboards": [st.Page("dashboard.py", title="Dash's"), st.Page("indicadores.py", title="Indicadores")],
+        "Conta": [st.Page("criar_conta.py", title="Criar conta"), st.Page(logout, title="Sair")]
+    })
+
+    paginas.run()
+
