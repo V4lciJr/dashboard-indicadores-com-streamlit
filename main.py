@@ -35,13 +35,6 @@ dados_usuario = autenticar_usuario(authenticator=authenticator)
 
 
 if dados_usuario:
-    @st.cache_data
-    def carregar_dados():
-        tabela = pd.read_excel("Base.xlsx")
-        return tabela
-
-
-    base = carregar_dados()
 
     email_usuario = dados_usuario["username"]
     usuario = session.query(Usuario).filter_by(email=email_usuario).first()
