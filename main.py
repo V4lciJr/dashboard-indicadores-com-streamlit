@@ -43,11 +43,22 @@ if dados_usuario:
 
     base = carregar_dados()
 
-    paginas = st.navigation({
-        "Home": [st.Page("homepage.py", title="Início")],
-        "Dashboards": [st.Page("dashboard.py", title="Dash's"), st.Page("indicadores.py", title="Indicadores")],
-        "Conta": [st.Page("criar_conta.py", title="Criar conta"), st.Page(logout, title="Sair")]
-    })
+    email_usuario = dados_usuario["username"]
+    usuario = session.query(Usuario).filter_by(email=email_usuario).first()
+
+    if usuario.admin:
+
+        paginas = st.navigation({
+            "Home": [st.Page("homepage.py", title="Início")],
+            "Dashboards": [st.Page("dashboard.py", title="Dash's"), st.Page("indicadores.py", title="Indicadores")],
+            "Conta": [st.Page("criar_conta.py", title="Criar conta"), st.Page(logout, title="Sair")]
+        })
+    else:
+        paginas = st.navigation({
+            "Home": [st.Page("homepage.py", title="Início")],
+            "Dashboards": [st.Page("dashboard.py", title="Dash's"), st.Page("indicadores.py", title="Indicadores")],
+            "Conta": [st.Page(logout, title="Sair")]
+        })
 
     paginas.run()
 
