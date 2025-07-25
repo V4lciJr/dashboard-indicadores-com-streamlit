@@ -1,6 +1,7 @@
 import plotly.express as px
 import plotly.graph_objects as go
 from importar_dados import *
+from ia_agents import agente
 
 base = carregar_dados()
 
@@ -50,4 +51,16 @@ with container:
     grafico_barra.update_layout(barmode='group')
     st.plotly_chart(grafico_barra)
 
+    resumo = agente(
+        f"""Você receberá uma base de projetos, com valores orçados, valores negociados e desconto concedidos, a base
+        também possui os tipos de projetos e seus status de acordo com as datas.
+        Faça um resumo e uma análise dos dados apresentados nessa base {base_mensal}, seja sempre preciso e objetivo,
+        sempre traga insights relacionados ao dados que auxílie na tomada de decisão e ajude a melhorarmos os números,
+        traga apenas as informações e mais nada, não traga números, apenas análises.
+        utilize emojis para explicar e ilustar melhor a análise
+        
+        """
+    )
 
+st.write("### Resumo:")
+st.write(resumo)
