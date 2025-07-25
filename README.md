@@ -139,5 +139,3 @@ Este projeto está licenciado sob a **MIT License**. Foi desenvolvido junto o cu
 ---
 
 ✨ **Obrigado por visitar este repositório! Que a análise de dados esteja com você!** 📈💡
-
-```
