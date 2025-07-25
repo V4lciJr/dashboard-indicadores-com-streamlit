@@ -1,15 +1,12 @@
 import streamlit as st
-import pandas as pd
 import streamlit_authenticator as stauth
 from models import session, Usuario
 
-
 lista_usuarios = session.query(Usuario).all()
 
-
 credenciais = {"usernames":
-    {usuario.email: {"name": usuario.nome, "password": usuario.senha} for usuario in lista_usuarios}
-}
+                   {usuario.email: {"name": usuario.nome, "password": usuario.senha} for usuario in lista_usuarios}
+               }
 
 authenticator = stauth.Authenticate(credenciais, "credenciais_hasco", "ahdyagatsgedgs$rf", cookie_expiry_days=20)
 
@@ -33,7 +30,6 @@ def logout():
 
 dados_usuario = autenticar_usuario(authenticator=authenticator)
 
-
 if dados_usuario:
 
     email_usuario = dados_usuario["username"]
@@ -54,4 +50,3 @@ if dados_usuario:
         })
 
     paginas.run()
-
